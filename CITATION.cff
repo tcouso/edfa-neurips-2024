@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: If you use this code, please cite the paper.
+title: esn-change-detection
+type: software
+license: MIT
+authors:
+  - family-names: Couso Coddou
+    given-names: Tomás
+  - family-names: Aguirre
+    given-names: Paula
+  - family-names: Carrasco
+    given-names: Rodrigo A.
+  - family-names: Lopatin
+    given-names: Javier
+preferred-citation:
+  type: conference-paper
+  title: Enhanced Detection of Human-Driven Forest Alterations using Echo State Networks
+  authors:
+    - family-names: Couso Coddou
+      given-names: Tomás
+    - family-names: Aguirre
+      given-names: Paula
+    - family-names: Carrasco
+      given-names: Rodrigo A.
+    - family-names: Lopatin
+      given-names: Javier
+  collection-title: NeurIPS 2024 Workshop on Tackling Climate Change with Machine Learning
+  year: 2024
+  url: https://neurips.cc/virtual/2024/100568
