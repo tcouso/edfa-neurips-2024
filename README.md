@@ -19,6 +19,12 @@ A polygon is labelled as changed if the fraction of flagged pixels is at least a
 
 The ESN has 500 reservoir units, leaking rate 0.5, spectral radius 0.9 and an RLS readout (ReservoirPy), and predicts the next NDVI value from the previous 104 weekly values (two years).
 
+<p align="center">
+  <img src="assets/esn-architecture.png" width="480" alt="Echo state network architecture">
+</p>
+
+<p align="center"><em>Echo state network: a fixed random reservoir, with only the readout <code>W<sup>out</sup></code> trained. The feedback connections <code>W<sup>fb</sup></code> are optional; this code uses the non-feedback network.</em></p>
+
 ## Repository structure
 
 ```
