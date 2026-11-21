@@ -1,0 +1,147 @@
+selected_band: ndvi
+
+test_at_scale: False
+test_at_scale_sample_size: 50
+
+directory_file_prefix_map:
+  estable-arboreo-ts: ESTABLE
+  sequia-arboreo-ts: SEQUIA
+  tala-arboreo-ts: TALA
+  incendio-arboreo-ts: INCENDIO
+
+selected_directories:
+  - estable-arboreo-ts
+  - sequia-arboreo-ts
+  - tala-arboreo-ts
+  - incendio-arboreo-ts
+
+column_conventions:
+  latitude: lat
+  longitude: lon
+  NAME: change_type
+  Finicio: change_start
+  Fultima: last_non_change_date
+  ORIGdesde: vegetation_type
+  ID: pol_id
+  IDpix: pix_id
+
+vegetation_type_conventions:
+  NATIVO: native
+  EXOTICO: exotic
+  MIXTO: mixed
+
+change_type_conventions:
+  estable: stable
+  incendio: fire
+  sequia: drought
+  tala: logging
+
+excluded_cols:
+  - system.index
+  - KML_FOLDER
+  - cobDesde
+  - cobHasta
+  - MAXsequia
+  - incendio
+  - Isequia
+  - disturbed
+  - Fsequia
+  - AREA_HA
+  - PERIM_M
+  - Ffinal
+  - nPIXxPOL
+
+esn_training_percentage: 0.3
+
+metadata_columns:
+  - lat
+  - lon
+  - change_type
+  - last_non_change_date
+  - change_start
+  - vegetation_type
+
+event_threshold: 01-01-2010
+
+megadrought_threshold: 01-01-2020
+
+non_change_placeholder_date: 01-01-1800
+
+random_seed: 0
+
+save_interval: 100
+
+weeks_after_change_offset: 5
+
+step_size: 1
+
+esn_features_dim: 104
+
+esn_training_years: 10
+
+esn_num_units: 500
+
+esn_lr: 0.5
+
+esn_sr: 0.9
+
+weeks_per_year: 52
+
+fault_detection_forecasted_steps: 52
+
+N_values:
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+
+k_values:
+ - 0.80
+ - 0.81
+ - 0.82
+ - 0.83
+ - 0.84
+ - 0.85
+ - 0.86
+ - 0.87
+ - 0.88
+ - 0.89
+ - 0.90
+ - 0.91
+ - 0.92
+ - 0.93
+ - 0.94
+ - 0.95
+ - 0.96
+ - 0.97
+ - 0.98
+ - 0.99
+ - 1.0
+
+voting_thresholds:
+  - 0.25
+  - 0.50 
+  - 0.75
+
+
+parameter_study_max_metric_prefix: "f1_scores"
+
+stable_event_types:
+  - stable
+  - drought
+
+change_event_types:
+  - logging
+  - fire
