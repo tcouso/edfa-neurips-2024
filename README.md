@@ -64,7 +64,7 @@ Neither version can be reproduced end to end without the private dataset. Each d
 
 ## Acknowledgements
 
-This work was supported by the FONDEF ID21I10102 and FONDECYT 1231245 grants from ANID. Paula Aguirre also acknowledges funding from CENIA.
+This work was supported by the FONDEF ID21I10102 and FONDECYT 1231245 grants from ANID. Paula Aguirre and Tomás Couso Coddou also acknowledge funding from CENIA.
 
 ## References
 
