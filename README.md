@@ -32,7 +32,7 @@ The method also runs over raster time series, mapping where and when changes are
   <img src="assets/raster-detections.png" width="720" alt="Change detections over two burned polygons">
 </p>
 
-<p align="center"><em>Detections over two burned polygons (black outlines). Left: aerial imagery. Centre: pixels with a detected change, in red. Right: the detection date of each pixel. Maps rendered with QGIS.</em></p>
+<p align="center"><em>Detections over two burned polygons (black outlines). Left: aerial imagery. Centre: pixels with a detected change, in red. Right: the detection date of each pixel. Maps rendered with QGIS, over a web basemap.</em></p>
 
 The dataset behind these numbers is not public. This repository is the code harness that produces them, with the input format documented and a synthetic dataset to run it.
 
