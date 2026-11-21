@@ -1,6 +1,6 @@
 # Manuscript version
 
-Code for the method as described in the [workshop manuscript](https://ccai-papers.s3.us-east-1.amazonaws.com/neurips2024/77/paper.pdf) of [*Enhanced Detection of Human-Driven Forest Alterations using Echo State Networks*](https://neurips.cc/virtual/2024/100568). The version presented in the workshop poster is in [`../poster`](../poster).
+Code for the method as described in the [workshop manuscript](https://ccai-papers.s3.us-east-1.amazonaws.com/neurips2024/77/paper.pdf) of [*Enhanced Detection of Human-Driven Forest Alterations using Echo State Networks*](https://neurips.cc/virtual/2024/100568). This is the earlier version of the method: the most recent one, presented in the workshop poster, is in [`../poster`](../poster).
 
 This directory is an extract of the author's original development repository, taken at the state closest to the experiments reported in the manuscript. Commit history, exploratory notebooks, trained models and results were left out, and the dataset is not included because it is not public.
 

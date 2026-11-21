@@ -1,0 +1,77 @@
+import numpy as np
+import reservoirpy as rpy
+from reservoirpy.nodes import Reservoir, RLS
+import pickle
+import json
+import yaml
+from sklearn.metrics import (
+    mean_absolute_error,
+    mean_absolute_percentage_error,
+    mean_squared_error,
+    r2_score,
+)
+from src import paths
+
+rpy.verbosity(1)
+
+
+def train_esn() -> None:
+
+    with open(paths.config_dir("params.yaml"), "r") as file:
+        params = yaml.safe_load(file)
+
+    selected_band = params["selected_band"]
+    esn_features_dim: int = params["esn_features_dim"]
+    esn_num_units: int = params["esn_num_units"]
+    esn_lr: float = params["esn_lr"]
+    esn_sr: float = params["esn_sr"]
+
+    # Load data
+    Xtrain = np.load(paths.features_dir(f"Xtrain_{esn_features_dim}_{selected_band}_features.npy"))
+    ytrain = np.load(paths.features_dir(f"ytrain_{esn_features_dim}_{selected_band}_features.npy"))
+
+    Xval = np.load(paths.features_dir(f"Xval_{esn_features_dim}_{selected_band}_features.npy"))
+    yval = np.load(paths.features_dir(f"yval_{esn_features_dim}_{selected_band}_features.npy"))
+
+    # Instance model
+    reservoir = Reservoir(
+        units=esn_num_units,
+        lr=esn_lr,
+        sr=esn_sr,
+    )
+    readout = RLS()
+    esn_model = reservoir >> readout
+
+    # Train model
+    esn_model.train(Xtrain, ytrain)
+    ypred = esn_model.run(Xval)
+
+    # Compute metrics
+    mape = mean_absolute_percentage_error(yval, ypred)
+    mae = mean_absolute_error(yval, ypred)
+    mse = mean_squared_error(yval, ypred)
+    r2 = r2_score(yval, ypred)
+
+    metrics = {
+        "mape": mape,
+        "mae": mae,
+        "mse": mse,
+        "r2": r2,
+    }
+
+    # Save files
+    model_filename = "_".join(
+        ["trained_esn", selected_band, str(esn_features_dim), "features", str(esn_num_units), "units"]
+    )
+    model_filename += ".pk"
+
+    with open(paths.models_dir(model_filename), "wb") as file:
+        pickle.dump(esn_model, file)
+
+    metrics_filename = "_".join(
+        ["esn_regression_metrics", selected_band, str(esn_features_dim), "features", str(esn_num_units), "units"]
+    )
+    metrics_filename += ".json"
+
+    with open(paths.reports_metrics_dir(metrics_filename), "w") as outfile:
+        json.dump(metrics, outfile)

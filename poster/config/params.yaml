@@ -1,0 +1,73 @@
+selected_band: ndvi
+
+placeholder_date: 01-01-1900
+
+training_limit_date: 01-01-2010
+
+esn_training_percentage: 0.8
+
+slack_weeks_for_event_date: 30
+
+esn_features_dim: 48
+
+esn_num_units: 1000
+
+esn_lr: 0.5
+
+esn_sr: 0.9
+
+change_detection_num_processes: 24
+
+N_values:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+
+k_values:
+  - 0.5
+  - 1.0
+  - 1.5
+  - 2.0
+  - 2.5
+  - 3.0
+  - 3.5
+  - 4.0
+  - 4.5
+  - 5.0
+
+majority_threshold: 0.7
+
+voting_threshold: 0.1
+
+param_iteration_poly_ids:
+  - 27
+  - 303
+  - 97
+  - 372
+
+optim_N_all: 7
+
+optim_k_all: 2.0
+
+optim_N: 6
+
+optim_k: 2.0
+
+stable_event_types:
+  - stable
+  - drought
+
+change_event_types:
+  - logging
+  - fire
+
+raster_detection_start_date: 01-01-2014
+
+raster_reference_date: 01-01-1970
