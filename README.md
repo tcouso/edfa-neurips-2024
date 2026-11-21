@@ -1,6 +1,6 @@
 # esn-change-detection
 
-Reference implementation of the method in *Enhanced Detection of Human-Driven Forest Alterations using Echo State Networks* (Couso Coddou, Aguirre, Carrasco, Lopatin), NeurIPS 2024 Workshop on Tackling Climate Change with Machine Learning.
+Reference implementation of the method in [*Enhanced Detection of Human-Driven Forest Alterations using Echo State Networks*](https://neurips.cc/virtual/2024/100568) (Couso Coddou, Aguirre, Carrasco, Lopatin), NeurIPS 2024 Workshop on Tackling Climate Change with Machine Learning.
 
 This repository is an extract of the author's original development repository, taken at the state that corresponds to the experiments reported in the paper. Commit history, exploratory notebooks, trained models and results were left out, and the dataset is not included because it is not public.
 
