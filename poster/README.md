@@ -68,7 +68,11 @@ Intermediate files go to `data/`, `features/`, `database/` and `results/`, the t
 
 ## Raster detections
 
-`src/inference/detect_over_rasters.py` applies the trained ESN and the detection rule to every pixel of a raster time series, and writes a binary detection raster and a raster with the detection date of each pixel. `src/visualization/test/plot_raster_detections.py` draws quick-look maps from them. The paper figures were rendered separately with QGIS.
+`src/inference/detect_over_rasters.py` applies the trained ESN and the detection rule to every pixel of a raster time series, and writes a binary detection raster and a raster with the detection date of each pixel. `src/visualization/test/plot_raster_detections.py` draws quick-look maps from them. The paper figures were rendered separately with QGIS:
+
+<p align="center">
+  <img src="../assets/raster-detections.png" width="640" alt="Change detections over two burned polygons">
+</p>
 
 The input rasters are not included: the script expects `data/external/rasters/<name>.tif` (one band per acquisition date) and `data/external/raster_dates/<name>.csv` (a `Formatted Date` column in `YYYY.MM.DD` format), and needs an ESN trained on the real data. No raster results are included either.
 

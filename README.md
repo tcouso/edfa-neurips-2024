@@ -26,6 +26,14 @@ Reported on the [workshop poster](https://neurips.cc/virtual/2024/100568), over 
 | Stable, logging | 0.67 | 0.58 | 0.47 | 0.74 |
 | Drought, logging | 0.69 | 0.54 | 0.47 | 0.62 |
 
+The method also runs over raster time series, mapping where and when changes are detected:
+
+<p align="center">
+  <img src="assets/raster-detections.png" width="720" alt="Change detections over two burned polygons">
+</p>
+
+<p align="center"><em>Detections over two burned polygons (black outlines). Left: aerial imagery. Centre: pixels with a detected change, in red. Right: the detection date of each pixel.</em></p>
+
 The dataset behind these numbers is not public. This repository is the code harness that produces them, with the input format documented and a synthetic dataset to run it.
 
 ## How it works
