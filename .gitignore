@@ -75,11 +75,16 @@ target/
 # Jupyter NB Checkpoints
 .ipynb_checkpoints/
 
-# exclude data from source control by default
-/data/
+# generated data, models and reports; directories are kept through .gitkeep
+/data/**
+!/data/**/
+!/data/**/.gitkeep
+/models/*
+!/models/.gitkeep
 
-# exclude reports plots
-/reports/
+/reports/**
+!/reports/**/
+!/reports/**/.gitkeep
 
 # Mac OS-specific storage files
 .DS_Store

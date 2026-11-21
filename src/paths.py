@@ -26,12 +26,6 @@ def make_dir_function(dir_name: Union[str, Iterable[str]]) -> Callable[..., Path
     return dir_path
 
 
-def root_dir() -> Path:
-    return here()
-
-
-project_dir = make_dir_function("")
-
 for dir_type in [
     ["config"],
     ["data"],

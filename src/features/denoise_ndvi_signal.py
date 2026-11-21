@@ -1,5 +1,4 @@
 from pandas import Series
-import numpy as np
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 from typing import List, Callable
 

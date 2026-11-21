@@ -29,7 +29,6 @@ def scores_over_parameters(
         params = yaml.safe_load(file)
 
     selected_band: str = params["selected_band"]
-    # parameter_study_selected_vegetation: str = params["parameter_study_selected_vegetation"]
 
     fault_detection_metadata_filename = "_".join(
         ["fault_detection_metadata",

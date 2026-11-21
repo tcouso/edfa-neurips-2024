@@ -2,7 +2,7 @@
 
 Official implementation of [*Enhanced Detection of Human-Driven Forest Alterations using Echo State Networks*](https://neurips.cc/virtual/2024/100568) (Tomás Couso Coddou, Paula Aguirre, Rodrigo A. Carrasco, Javier Lopatin), NeurIPS 2024 Workshop on Tackling Climate Change with Machine Learning. The [manuscript (PDF)](https://ccai-papers.s3.us-east-1.amazonaws.com/neurips2024/77/paper.pdf) is hosted by the workshop.
 
-This repository is an extract of the author's original development repository, taken at the state that corresponds to the experiments reported in the paper. Commit history, exploratory notebooks, trained models and results were left out, and the dataset is not included because it is not public.
+This repository is an extract of the author's original development repository, taken at the state closest to the experiments reported in the paper. Commit history, exploratory notebooks, trained models and results were left out, and the dataset is not included because it is not public.
 
 ## Overview
 
@@ -36,7 +36,7 @@ src/models/predict_over_pixels.py           pixel predictions over the (N, k) gr
 src/models/predict_over_polygons.py         polygon voting over the (N, k, th) grid
 src/metrics/                                classification metrics over the parameter grid
 src/visualization/                          metric plots
-run.sh                                      full pipeline
+run.sh                                      full pipeline, from data preparation to plots
 ```
 
 ## Data
@@ -61,6 +61,8 @@ pip install -e .
 pip install -r requirements.txt
 bash run.sh
 ```
+
+`run.sh` runs the data preparation, ESN training, change detection, metrics (`reports/metrics/`) and plots (`reports/figures/`). Intermediate files go to `data/interim/` and `data/processed/`, and the trained ESN to `models/`; these directories are kept in the repository empty and their contents are git-ignored.
 
 ## Notes on the paper
 

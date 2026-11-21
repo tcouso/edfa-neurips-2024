@@ -21,8 +21,6 @@ metadata_columns:
 
 event_threshold: 01-01-2010
 
-megadrought_threshold: 01-01-2020
-
 non_change_placeholder_date: 01-01-1800
 
 random_seed: 0

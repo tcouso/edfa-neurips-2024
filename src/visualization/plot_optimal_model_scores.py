@@ -55,7 +55,6 @@ def plot_optimal_model_scores_by_event_type(
         params = yaml.safe_load(file)
 
     selected_band: str = params["selected_band"]
-    # parameter_study_selected_vegetation: str = params["parameter_study_selected_vegetation"]
     selected_score: str = params["parameter_study_max_metric_prefix"]
     stable_event_types: List[str] = params["stable_event_types"]
     change_event_types: List[str] = params["change_event_types"]

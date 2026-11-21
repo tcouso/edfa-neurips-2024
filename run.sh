@@ -6,3 +6,5 @@ python3 src/data/make_dataset.py
 python3 src/features/build_features.py
 python3 src/models/train_model.py
 python3 src/models/predict_model.py
+python3 src/metrics/compute_metrics.py
+python3 src/visualization/build_visualizations.py

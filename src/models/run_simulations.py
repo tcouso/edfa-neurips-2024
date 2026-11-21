@@ -22,14 +22,6 @@ def save_signal_simulations(signal_simulations: Dict = None,
 
 
 def run_simulations(
-    # trained_esn_path: Path = paths.models_dir(
-    #     "trained-esn-non-feedback.pickle"),
-    # pre_megadrought_fault_detection_dataset_path: Path = paths.data_processed_dir(
-    #     "fault_detection", "pre_megadrought_fault_detection_dataset.csv"),
-    # pre_megadrought_fault_detection_metadata_path: Path = paths.data_processed_dir(
-    #     "fault_detection", "pre_megadrought_fault_detection_metadata.csv"),
-    # simulations_path: Path = paths.data_interim_dir(
-    #     "simulations", "simulations.pickle"),
     trained_esn_dir: Path = paths.models_dir(),
     fault_detection_dir: Path = paths.data_processed_dir("fault_detection"),
     simulations_dir: Path = paths.data_interim_dir("simulations"),
