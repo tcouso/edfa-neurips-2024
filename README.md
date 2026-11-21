@@ -32,7 +32,7 @@ The method also runs over raster time series, mapping where and when changes are
   <img src="assets/raster-detections.png" width="720" alt="Change detections over two burned polygons">
 </p>
 
-<p align="center"><em>Detections over two burned polygons (black outlines). Left: aerial imagery. Centre: pixels with a detected change, in red. Right: the detection date of each pixel.</em></p>
+<p align="center"><em>Detections over two burned polygons (black outlines). Left: aerial imagery. Centre: pixels with a detected change, in red. Right: the detection date of each pixel. Maps rendered with QGIS.</em></p>
 
 The dataset behind these numbers is not public. This repository is the code harness that produces them, with the input format documented and a synthetic dataset to run it.
 
@@ -61,6 +61,10 @@ The workshop poster is the most recent version of the work, and is the one to st
 | Extras | detection over raster time series | |
 
 Neither version can be reproduced end to end without the private dataset. Each directory documents the input format it expects and includes a generator of synthetic data to exercise the code.
+
+## Acknowledgements
+
+This work was supported by the FONDEF ID21I10102 and FONDECYT 1231245 grants from ANID. Paula Aguirre also acknowledges funding from CENIA.
 
 ## References
 

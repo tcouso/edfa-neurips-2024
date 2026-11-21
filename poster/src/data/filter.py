@@ -22,7 +22,7 @@ def filter():
   # Remove polygons with start date before training limit date
   changed_polys_df = metadata_df[metadata_df["label"] == 1]
   polys_to_discard = changed_polys_df[changed_polys_df["start"] < pd.Timestamp(params["training_limit_date"])]
-  filtered_metadata_df = metadata_df[~metadata_df.index.get_level_values('ID').isin(polys_to_discard)]
+  filtered_metadata_df = metadata_df[~metadata_df.index.get_level_values('ID').isin(polys_to_discard.index.get_level_values('ID'))]
 
   # Apply filter to signal data
   filtered_signal_df = signal_df.loc[filtered_metadata_df.index]

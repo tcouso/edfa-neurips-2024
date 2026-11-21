@@ -23,7 +23,7 @@ All parameters are in `config/params.yaml`.
 config/params.yaml                                  all hyperparameters
 src/data/make_synthetic_dataset.py                  synthetic dataset in the expected format
 src/data/annotate.py                                add annotated event dates to the metadata
-src/data/filter.py                                  intended to discard polygons that changed before the training period
+src/data/filter.py                                  discard polygons that changed before the training period
 src/data/make_train_test_datasets.py                split signals at training_limit_date
 src/features/                                       denoising and feature/target windows
 src/training/                                       ESN training
