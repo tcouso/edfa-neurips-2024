@@ -4,9 +4,7 @@ Code for the method as described in the [workshop manuscript](https://ccai-paper
 
 This directory is an extract of the author's original development repository, taken at the state closest to the experiments reported in the manuscript. Commit history, exploratory notebooks, trained models and results were left out, and the dataset is not included because it is not public.
 
-## Overview
-
-The method detects human-driven changes in woodlands (logging, fire) from Landsat NDVI time series, and is evaluated against natural disturbances (drought-induced browning) and stable vegetation in central Chile.
+## Method
 
 For each pixel:
 
@@ -18,12 +16,6 @@ For each pixel:
 A polygon is labelled as changed if the fraction of flagged pixels is at least a voting threshold `th`. The parameters `N`, `k` and `th` are selected by grid search over F1-score (`config/params.yaml`).
 
 The ESN has 500 reservoir units, leaking rate 0.5, spectral radius 0.9 and an RLS readout (ReservoirPy), and predicts the next NDVI value from the previous 104 weekly values (two years).
-
-<p align="center">
-  <img src="../assets/esn-architecture.png" width="480" alt="Echo state network architecture">
-</p>
-
-<p align="center"><em>Echo state network: a fixed random reservoir, with only the readout <code>W<sup>out</sup></code> trained. The feedback connections <code>W<sup>fb</sup></code> are optional; this code uses the non-feedback network. Figure from <a href="https://ieeexplore.ieee.org/abstract/document/9205191">Cho et al. (2020)</a>.</em></p>
 
 ## Repository structure
 
@@ -74,9 +66,3 @@ bash run.sh
 
 - The denoising step resamples to weekly intervals (`resample("W")`); the paper text says bi-weekly.
 - Only the non-feedback ESN is implemented.
-
-## References
-
-The change detection scheme (lower bound from the ESN forecast, N consecutive values below `k` times the bound) adapts the fault detection method of:
-
-A. D. Cho, R. A. Carrasco, G. A. Ruz and J. L. Ortiz, "Slow Degradation Fault Detection in a Harsh Environment," *IEEE Access*, vol. 8, pp. 175904-175920, 2020, doi: [10.1109/ACCESS.2020.3026348](https://doi.org/10.1109/ACCESS.2020.3026348).
