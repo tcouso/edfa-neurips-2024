@@ -2,7 +2,7 @@ import pandas as pd
 import yaml
 from pathlib import Path
 from src import paths
-from typing import List, Dict
+from typing import List
 from src.data.utils import create_output_path
 
 
@@ -14,44 +14,24 @@ def join_signal_to_aux_datasets(
         params = yaml.safe_load(file)
 
     selected_band: str = params["selected_band"]
-    directory_file_prefix_map: Dict[str,
-                                    str] = params["directory_file_prefix_map"]
-    selected_directories: List[str] = params["selected_directories"]
-    column_conventions: Dict[str, str] = params["column_conventions"]
-    vegetation_type_conventions: Dict[str,
-                                      str] = params["vegetation_type_conventions"]
-    change_type_conventions: Dict[str, str] = params["change_type_conventions"]
-    excluded_cols: List[str] = params["excluded_cols"]
+    event_types: List[str] = params["event_types"]
     test_at_scale: bool = params["test_at_scale"]
     test_at_scale_sample_size: int = params["test_at_scale_sample_size"]
 
-    for directory in selected_directories:
-        filename_prefix = directory_file_prefix_map[directory]
-        change_type = filename_prefix.lower()
+    for event_type in event_types:
+        signal_filepath = paths.data_raw_dir(
+            event_type, "signal_" + selected_band + ".csv")
+        metadata_filepath = paths.data_raw_dir(event_type, "metadata.csv")
 
-        signal_filename = filename_prefix + "_TimeSerie_" + selected_band + ".csv"
-        aux_filename = filename_prefix + "_AuxiliarFix.csv"
+        signal_df = pd.read_csv(signal_filepath)
+        metadata_df = pd.read_csv(metadata_filepath)
 
-        signal_filepath = paths.data_raw_dir(directory, signal_filename)
-        aux_filepath = paths.data_raw_dir(directory, aux_filename)
-
-        aux_df = pd.read_csv(aux_filepath, index_col=0)
-        signal_df = pd.read_csv(signal_filepath, index_col=0)
-
-        df = pd.merge(aux_df, signal_df, left_on='IDpix',
-                      right_on='IDpix', how='outer')
-        df = df.drop(columns=excluded_cols)
+        df = pd.merge(metadata_df, signal_df, on="IDpix", how="outer")
         df = df.set_index(["ID", "IDpix"])
+        df["change_type"] = event_type
 
-        df = df.rename(columns=column_conventions)
-        df["vegetation_type"] = df["vegetation_type"].map(
-            vegetation_type_conventions)
-        df["change_type"] = df["change_type"].map(change_type_conventions)
-
-        out_directory = change_type_conventions[change_type]
-        out_filename = change_type_conventions[change_type] + \
-            "_" + selected_band + ".csv"
-        out_path = paths.data_interim_dir(out_directory, out_filename)
+        out_path = paths.data_interim_dir(
+            event_type, event_type + "_" + selected_band + ".csv")
 
         create_output_path(out_path)
 

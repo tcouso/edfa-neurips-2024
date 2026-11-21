@@ -3,53 +3,11 @@ selected_band: ndvi
 test_at_scale: False
 test_at_scale_sample_size: 50
 
-directory_file_prefix_map:
-  estable-arboreo-ts: ESTABLE
-  sequia-arboreo-ts: SEQUIA
-  tala-arboreo-ts: TALA
-  incendio-arboreo-ts: INCENDIO
-
-selected_directories:
-  - estable-arboreo-ts
-  - sequia-arboreo-ts
-  - tala-arboreo-ts
-  - incendio-arboreo-ts
-
-column_conventions:
-  latitude: lat
-  longitude: lon
-  NAME: change_type
-  Finicio: change_start
-  Fultima: last_non_change_date
-  ORIGdesde: vegetation_type
-  ID: pol_id
-  IDpix: pix_id
-
-vegetation_type_conventions:
-  NATIVO: native
-  EXOTICO: exotic
-  MIXTO: mixed
-
-change_type_conventions:
-  estable: stable
-  incendio: fire
-  sequia: drought
-  tala: logging
-
-excluded_cols:
-  - system.index
-  - KML_FOLDER
-  - cobDesde
-  - cobHasta
-  - MAXsequia
-  - incendio
-  - Isequia
-  - disturbed
-  - Fsequia
-  - AREA_HA
-  - PERIM_M
-  - Ffinal
-  - nPIXxPOL
+event_types:
+  - stable
+  - drought
+  - logging
+  - fire
 
 esn_training_percentage: 0.3
 

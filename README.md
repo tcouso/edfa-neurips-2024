@@ -23,6 +23,7 @@ The ESN has 500 reservoir units, leaking rate 0.5, spectral radius 0.9 and an RL
 
 ```
 config/params.yaml                          all hyperparameters and dataset conventions
+src/data/make_synthetic_dataset.py          synthetic dataset in the expected raw format
 src/data/join_signal_to_aux_datasets.py     merge raw signal and polygon metadata
 src/data/esn_fault_detection_partition.py   random polygon split: ESN training vs. change detection
 src/features/denoise_ndvi_signal.py         denoising pipeline
@@ -40,7 +41,18 @@ run.sh                                      full pipeline
 
 ## Data
 
-The dataset is not distributed. `src/data/join_signal_to_aux_datasets.py` documents the expected input under `data/raw/`: one directory per event type (`estable-arboreo-ts`, `sequia-arboreo-ts`, `tala-arboreo-ts`, `incendio-arboreo-ts`), each with `<PREFIX>_TimeSerie_<band>.csv` (one row per pixel, one column per date) and `<PREFIX>_AuxiliarFix.csv` (pixel and polygon metadata). Column names are mapped in `config/params.yaml`.
+The dataset is not distributed. The pipeline expects one directory per event type under `data/raw/` (`stable`, `drought`, `logging`, `fire`), each with:
+
+- `signal_<band>.csv`: one row per pixel, with an `IDpix` column and one column per acquisition date (`YYYY-MM-DD`) holding the band value. Missing observations are empty.
+- `metadata.csv`: one row per pixel, with columns `ID` (polygon), `IDpix`, `lat`, `lon`, `change_start` and `last_non_change_date` (`DD-MM-YYYY`, empty for stable and drought polygons) and `vegetation_type` (`native`, `exotic` or `mixed`).
+
+To check the pipeline without the real data, generate a synthetic dataset in this format:
+
+```bash
+python src/data/make_synthetic_dataset.py
+```
+
+It writes 20 polygons of 5 pixels each (seasonal NDVI with noise, gaps and outliers; abrupt drop for logging, drop and recovery for fire, a mild dip for drought). It is only meant to exercise the code: results on it are not meaningful. Setting `test_at_scale: True` in `config/params.yaml` samples `test_at_scale_sample_size` pixels per event type for a quick run.
 
 ## Run
 
@@ -49,8 +61,6 @@ pip install -e .
 pip install -r requirements.txt
 bash run.sh
 ```
-
-`TELEGRAM_TOKEN` and `CHAT_ID` may be set in a `.env` file for progress notifications. They are optional.
 
 ## Notes on the paper
 

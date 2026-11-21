@@ -8,7 +8,6 @@ from typing import Dict
 from tqdm import tqdm
 
 from src.config import get_logger
-from src.notifications import send_telegram_notification
 from src import paths
 from src.models.fault_detection import simulate_signal
 from src.data.utils import create_output_path
@@ -42,7 +41,6 @@ def run_simulations(
 
     msg = "Loading parameters"
     logger.info(msg)
-    send_telegram_notification(msg)
 
     with open(params_path, "r") as file:
         params = yaml.safe_load(file)
@@ -60,7 +58,6 @@ def run_simulations(
 
     msg = "Loading datasets"
     logger.info(msg)
-    send_telegram_notification(msg)
 
     fault_detection_metadata_filename = "fault_detection_metadata_" + selected_band + ".csv"
     fault_detection_metadata_path = fault_detection_dir / \
@@ -84,7 +81,6 @@ def run_simulations(
 
     msg = "Loading model"
     logger.info(msg)
-    send_telegram_notification(msg)
 
     model_filename = "trained_esn_" + selected_band + ".pickle"
     model_path = trained_esn_dir / model_filename
@@ -96,7 +92,6 @@ def run_simulations(
 
     msg = f"Begining iteration of {num_pixles} pixels for signal simulation"
     logger.info(msg)
-    send_telegram_notification(msg)
 
     simulations_filename = "signal_simulations_" + selected_band + ".pickle"
     simulations_path = simulations_dir / simulations_filename
@@ -133,10 +128,8 @@ def run_simulations(
                 save_signal_simulations(signal_simulations, simulations_path)
                 msg = f"Completed: {i+1} iterations; {completion_percentage:.2f}% of total iterations"
                 logger.info(msg)
-                send_telegram_notification(msg)
 
         save_signal_simulations(signal_simulations, simulations_path)
 
     msg = "Iterations completed"
     logger.info(msg)
-    send_telegram_notification(msg)
